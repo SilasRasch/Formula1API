@@ -40,6 +40,13 @@ namespace Formula1API.Controllers
 
             return driver;
         }
+        
+        // GET: api/Drivers/
+        [HttpGet("ByTeam/{teamId}")]
+        public async Task<ActionResult<IEnumerable<Driver>>> GetDriversByTeamId(int teamId)
+        {
+            return await _context.Drivers.Where(d => d.TeamId == teamId).ToListAsync();
+        }
 
         // PUT: api/Drivers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

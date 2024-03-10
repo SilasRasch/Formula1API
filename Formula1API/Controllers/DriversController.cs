@@ -31,7 +31,7 @@ namespace Formula1API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Driver>> GetDriver(int id)
         {
-            var driver = await _context.Drivers.FindAsync(id);
+            var driver = await _context.Drivers.FirstOrDefaultAsync(d => d.DriverNumber == id);
 
             if (driver == null)
             {

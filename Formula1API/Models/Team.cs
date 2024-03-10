@@ -4,32 +4,28 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string LogoImgPath { get; set; }
-        //public List<Driver>? Drivers { get; set; }
         public string TeamColors { get; set; }
         public int Points { get; set; }
         public int WorldChampionships { get; set; }
         public string TeamChief { get; set; }
+        public string LogoImgPath { get; set; }
+        public IEnumerable<Driver> Drivers { get; set; } = new List<Driver>();
 
-        public Team(string name, string logoImgPath, string teamColors, int points, int worldChampionships, string teamChief)
+        public Team(int id, string name, string teamColors, int points, int worldChampionships, string teamChief, string logoImgPath, IEnumerable<Driver> drivers)
         {
+            Id = id;
             Name = name;
-            LogoImgPath = logoImgPath;
-            //Drivers = new List<Driver>();
             TeamColors = teamColors;
             Points = points;
             WorldChampionships = worldChampionships;
             TeamChief = teamChief;
+            LogoImgPath = logoImgPath;
+            Drivers = drivers;
         }
 
         public Team()
         {
             
-        }
-
-        public override string ToString()
-        {
-            return $"{{{nameof(Name)}={Name}, {nameof(LogoImgPath)}={LogoImgPath}, {nameof(TeamColors)}={TeamColors}, {nameof(Points)}={Points.ToString()}, {nameof(WorldChampionships)}={WorldChampionships.ToString()}, {nameof(TeamChief)}={TeamChief}}}";
         }
     }
 }

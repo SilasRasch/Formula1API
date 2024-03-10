@@ -24,14 +24,14 @@ namespace Formula1API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Driver>>> GetDrivers()
         {
-            return await _context.Drivers.ToListAsync();
+            return await _context.Drivers.Include(d => d.Team).ToListAsync();
         }
 
         // GET: api/Drivers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Driver>> GetDriver(int id)
         {
-            var driver = await _context.Drivers.FirstOrDefaultAsync(d => d.DriverNumber == id);
+            var driver = await _context.Drivers.Include(d => d.Team).FirstOrDefaultAsync(d => d.DriverNumber == id);
 
             if (driver == null)
             {
@@ -45,7 +45,7 @@ namespace Formula1API.Controllers
         [HttpGet("ByTeam/{teamId}")]
         public async Task<ActionResult<IEnumerable<Driver>>> GetDriversByTeamId(int teamId)
         {
-            return await _context.Drivers.Where(d => d.TeamId == teamId).ToListAsync();
+            return await _context.Drivers.Include(d => d.Team).Where(d => d.TeamId == teamId).ToListAsync();
         }
 
         // PUT: api/Drivers/5

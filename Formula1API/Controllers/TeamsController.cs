@@ -24,14 +24,14 @@ namespace Formula1API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeams()
         {
-            return await _context.Teams.ToListAsync();
+            return await _context.Teams.Include(t => t.Drivers).ToListAsync();
         }
 
         // GET: api/Teams/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> GetTeam(int id)
         {
-            var team = await _context.Teams.FindAsync(id);
+            var team = await _context.Teams.Include(t => t.Drivers).FirstOrDefaultAsync(t => t.Id == id);
 
             if (team == null)
             {

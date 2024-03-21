@@ -51,23 +51,8 @@ namespace Formula1API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(team).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TeamExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _context.Teams.Update(team);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }

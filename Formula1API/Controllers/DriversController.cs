@@ -53,28 +53,12 @@ namespace Formula1API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDriver(int id, Driver driver)
         {
-            if (id != driver.DriverNumber)
-            {
-                return BadRequest();
-            }
+            if (id != driver.DriverNumber) { return BadRequest(); }
 
-            _context.Entry(driver).State = EntityState.Modified;
+            if (GetDriver(id) == null) { return BadRequest(); }
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DriverExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _context.Drivers.Update(driver);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }

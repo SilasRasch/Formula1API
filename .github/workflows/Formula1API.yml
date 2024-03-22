@@ -13,6 +13,8 @@ env:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
     steps:
     - uses: actions/checkout@v4
     - name: 'Check secret'
@@ -36,6 +38,8 @@ jobs:
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
   deploy:
     runs-on: windows-latest
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
     needs: build
     steps:
     - name: Download artifact from build job

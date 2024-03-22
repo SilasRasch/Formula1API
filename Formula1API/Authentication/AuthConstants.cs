@@ -2,7 +2,7 @@
 {
     public static class AuthConstants
     {
-        public const string AzureApiKeyName = "API_KEY";
+        public const string ApiKeySectionName = "Authentication:ApiKey";
         public const string ApiKeyHeaderName = "X-Api-Key";
     }
 }

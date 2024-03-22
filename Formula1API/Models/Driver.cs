@@ -5,7 +5,7 @@ namespace Formula1API.Models
 {
     public class Driver
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DriverNumber { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }

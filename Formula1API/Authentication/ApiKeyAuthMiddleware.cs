@@ -20,8 +20,8 @@
                 return;
             }
 
-            var apiKey = _configuration.GetValue<string>(AuthConstants.ApiKeySectionName);
-            //var apiKey = Environment.GetEnvironmentVariable("API_KEY");
+            //var apiKey = _configuration.GetValue<string>(AuthConstants.ApiKeySectionName);
+            var apiKey = Environment.GetEnvironmentVariable("API_KEY");
             if (!apiKey.Equals(extractedApiKey))
             {
                 context.Response.StatusCode = 401;

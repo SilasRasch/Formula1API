@@ -24,7 +24,7 @@
             //var apiKey = _configuration.GetValue<string>("APIKEY");
             var apiKey = _configuration.GetValue<string>(AuthConstants.ApiKeySectionName);
 
-            if (apiKey != null)
+            if (apiKey == null)
             {
                 context.Response.StatusCode = 500;
                 await context.Response.WriteAsync("Api key variable not found");

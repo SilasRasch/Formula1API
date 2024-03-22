@@ -20,9 +20,9 @@
                 return;
             }
 
-            var apiKey = Environment.GetEnvironmentVariable(AuthConstants.AzureApiKeyName);
+            //var apiKey = Environment.GetEnvironmentVariable(AuthConstants.AzureApiKeyName);
             //var apiKey = _configuration.GetValue<string>("APIKEY");
-            //var apiKey = _configuration.GetValue<string>(AuthConstants.ApiKeySectionName);
+            var apiKey = _configuration.GetValue<string>(AuthConstants.ApiKeySectionName);
 
             if (apiKey != null)
             {

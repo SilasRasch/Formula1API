@@ -1,3 +1,4 @@
+using Formula1API.Authentication;
 using Formula1API.Models;
 using System.Text.Json.Serialization;
 
@@ -37,6 +38,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(allowAll);
+
+app.UseMiddleware<ApiKeyAuthMiddleware>();
 
 app.UseAuthorization();
 

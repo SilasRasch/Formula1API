@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Formula1API.Authentication;
+using Microsoft.EntityFrameworkCore;
 
 namespace Formula1API.Models
 {
@@ -9,8 +10,8 @@ namespace Formula1API.Models
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //string connectionString = "server=mysql118.unoeuro.com;user=voresdomaene_dk;password=RD6dag4pnmbyBekGErft;database=voresdomaene_dk_db_formula1";
-            string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION")!;
+            string connectionString = "server=mysql118.unoeuro.com;user=voresdomaene_dk;password=RD6dag4pnmbyBekGErft;database=voresdomaene_dk_db_formula1";
+            //string connectionString = Environment.GetEnvironmentVariable(AuthConstants.AzureConnectonString)!;
             //string localConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=F1Local;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             var serverVersion = new MySqlServerVersion(new Version(8, 2));
 

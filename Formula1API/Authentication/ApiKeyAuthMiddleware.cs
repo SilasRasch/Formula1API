@@ -3,12 +3,10 @@
     public class ApiKeyAuthMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IConfiguration _configuration;
 
-        public ApiKeyAuthMiddleware(RequestDelegate next, IConfiguration config)
+        public ApiKeyAuthMiddleware(RequestDelegate next)
         {
             _next = next;
-            _configuration = config;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -20,8 +18,15 @@
                 return;
             }
 
-            //var apiKey = _configuration.GetValue<string>(AuthConstants.ApiKeySectionName);
-            var apiKey = Environment.GetEnvironmentVariable("API_KEY");
+            var apiKey = Environment.GetEnvironmentVariable(AuthConstants.AzureApiKeyName);
+            
+            if (apiKey != null)
+            {
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("Api key variable not found");
+                return;
+            }
+
             if (!apiKey.Equals(extractedApiKey))
             {
                 context.Response.StatusCode = 401;

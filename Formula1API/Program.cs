@@ -6,11 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-string allowAllPolicy = "AllowAll";
+string developmentPolicy = "dev";
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(allowAllPolicy, policy =>
+    options.AddPolicy(developmentPolicy, policy =>
     {
         policy.WithOrigins("http://localhost:3000", "http://jolly-island-0c9643503.4.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
     });
@@ -40,7 +40,7 @@ app.UseHttpsRedirection();
 
 //app.UseRouting();
 
-app.UseCors(allowAllPolicy);
+app.UseCors(developmentPolicy);
 
 //app.UseMiddleware<ApiKeyAuthMiddleware>();
 

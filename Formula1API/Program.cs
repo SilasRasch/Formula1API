@@ -37,9 +37,9 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseMiddleware<ApiKeyAuthMiddleware>();
-
 app.UseCors("AllowAll");
+
+app.UseMiddleware<ApiKeyAuthMiddleware>();
 
 app.UseAuthorization();
 

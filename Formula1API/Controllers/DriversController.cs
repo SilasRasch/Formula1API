@@ -12,7 +12,6 @@ namespace Formula1API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowAll")]
     public class DriversController : ControllerBase
     {
         private readonly ProjectDbContext _context;
@@ -53,7 +52,7 @@ namespace Formula1API.Controllers
         // PUT: api/Drivers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDriver(int id, Driver driver)
+        public async Task<IActionResult> PutDriver(int id, [FromBody] Driver driver)
         {
             if (id != driver.DriverNumber) { return BadRequest(); }
 
@@ -68,7 +67,7 @@ namespace Formula1API.Controllers
         // POST: api/Drivers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Driver>> PostDriver(Driver driver)
+        public async Task<ActionResult<Driver>> PostDriver([FromBody] Driver driver)
         {
             _context.Drivers.Add(driver);
             await _context.SaveChangesAsync();

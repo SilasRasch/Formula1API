@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(allowAllPolicy, policy =>
     {
-        policy.WithOrigins().AllowAnyMethod().AllowAnyHeader()/*.AllowCredentials().SetPreflightMaxAge(TimeSpan.FromSeconds(3600))*/;
+        policy.WithOrigins("http://localhost:3000", "http://jolly-island-0c9643503.4.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
     });
 });
 
@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseRouting();
+//app.UseRouting();
 
 app.UseCors(allowAllPolicy);
 

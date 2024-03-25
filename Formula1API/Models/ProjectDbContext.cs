@@ -10,7 +10,10 @@ namespace Formula1API.Models
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = Environment.GetEnvironmentVariable(AuthConstants.AzureDbConnectionString)!;
+            //string connectionString = Environment.GetEnvironmentVariable(AuthConstants.AzureDbConnectionString)!;
+
+            // Local host
+            string connectionString = "server=mysql118.unoeuro.com;user=voresdomaene_dk;password=RD6dag4pnmbyBekGErft;database=voresdomaene_dk_db_formula1";
             var serverVersion = new MySqlServerVersion(new Version(8, 2));
 
             optionsBuilder.UseMySql(connectionString, serverVersion);

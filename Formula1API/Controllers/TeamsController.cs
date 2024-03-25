@@ -12,7 +12,6 @@ namespace Formula1API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowAll")]
     public class TeamsController : ControllerBase
     {
         private readonly ProjectDbContext _context;

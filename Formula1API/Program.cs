@@ -6,13 +6,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+string allowAllPolicy = "AllowAll";
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader());
+    options.AddPolicy(allowAllPolicy, policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
 });
+
 
 builder.Services.AddControllers();
 
@@ -37,7 +40,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors("AllowAll");
+app.UseCors(allowAllPolicy);
 
 app.UseMiddleware<ApiKeyAuthMiddleware>();
 

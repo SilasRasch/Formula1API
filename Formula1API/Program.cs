@@ -6,13 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var allowAll = "AllowAll";
-
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: allowAll, policy =>
+    options.AddDefaultPolicy(policy =>
     {
-        policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
 
@@ -37,7 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(allowAll);
+app.UseCors();
 
 app.UseMiddleware<ApiKeyAuthMiddleware>();
 

@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(allowAllPolicy, policy =>
     {
-        policy.WithOrigins().AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+        policy.WithOrigins().AllowAnyMethod().AllowAnyHeader()/*.AllowCredentials().SetPreflightMaxAge(TimeSpan.FromSeconds(3600))*/;
     });
 });
 
@@ -42,7 +42,7 @@ app.UseRouting();
 
 app.UseCors(allowAllPolicy);
 
-app.UseMiddleware<ApiKeyAuthMiddleware>();
+//app.UseMiddleware<ApiKeyAuthMiddleware>();
 
 app.UseAuthorization();
 

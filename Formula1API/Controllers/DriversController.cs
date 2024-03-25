@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Formula1API.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Formula1API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowAll")]
     public class DriversController : ControllerBase
     {
         private readonly ProjectDbContext _context;

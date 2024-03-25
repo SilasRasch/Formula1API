@@ -8,10 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-    });
+    options.AddPolicy("AllowAll", builder =>
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
 });
 
 builder.Services.AddControllers();
@@ -39,7 +39,7 @@ app.UseRouting();
 
 app.UseMiddleware<ApiKeyAuthMiddleware>();
 
-app.UseCors();
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

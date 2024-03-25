@@ -35,11 +35,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseMiddleware<ApiKeyAuthMiddleware>();
 
-app.UseAuthorization();
-
 app.UseCors();
+
+app.UseAuthorization();
 
 app.MapControllers();
 

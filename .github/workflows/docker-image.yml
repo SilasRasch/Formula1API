@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . -t silasrask/f1api:latest
     - name: Push to Docker Hub
-      run: docker push silasrasch/f1api:latest
+      run: docker push silasrask/f1api:latest

@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker login details
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PSWD: ${{ secrets.DOCKER_PSWD }}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER-PSWD
+    - name: Build the Docker image
+      run: docker build . -t silasrasch/f1api:1.0
+    - name: Push to Docker Hub
+      run: docker push silasrasch/f1api:1.0

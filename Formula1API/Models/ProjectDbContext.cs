@@ -7,20 +7,37 @@ namespace Formula1API.Models
     {
         public DbSet<Team> Teams { get; set; }
         public DbSet<Driver> Drivers { get; set; }
-        
+        private string _connectionString;
+
+        #region Local host constructor
+        private IConfiguration _config;
+
+        public ProjectDbContext(IConfiguration config)
+        {
+            _config = config;
+        }
+        #endregion
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //string connectionString = Environment.GetEnvironmentVariable(AuthConstants.AzureDbConnectionString)!;
+            // Portainer / Azure
+            var env = Environment.GetEnvironmentVariable(AuthConstants.SimplyConnectionString)!;
+            
+            // Local
+            var appsetting = _config.GetValue<string>(AuthConstants.SimplyConnectionString)!;
 
-            // Local host
-            string connectionString = "server=mysql118.unoeuro.com;user=voresdomaene_dk;password=RD6dag4pnmbyBekGErft;database=voresdomaene_dk_db_formula1";
+            // Check if local or environment
+            if (env != null)
+            {
+                _connectionString = env;
+            }
+            else
+            {
+                _connectionString = appsetting;
+            }
+
             var serverVersion = new MySqlServerVersion(new Version(8, 2));
-
-            optionsBuilder.UseMySql(connectionString, serverVersion);
-
-            // Local DB
-            //string localConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=F1Local;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-            //optionsBuilder.UseSqlServer(localConnectionString);
+            optionsBuilder.UseMySql(_connectionString, serverVersion);
         }
     }
 }

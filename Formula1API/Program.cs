@@ -42,7 +42,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(developmentPolicy);
 
-//app.UseMiddleware<ApiKeyAuthMiddleware>();
+app.UseMiddleware<ApiKeyAuthMiddleware>(); // Turned off why?
 
 app.UseAuthorization();
 

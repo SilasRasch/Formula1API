@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  formula1api:
+    image: ${DOCKER_REGISTRY-}formula1api
+    build:
+      context: .
+      dockerfile: Formula1API/Dockerfile

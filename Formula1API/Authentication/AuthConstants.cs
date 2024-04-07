@@ -18,6 +18,7 @@
 
         #region Portainer (self-hosted)
         //public const string SimplyConnectionString = "SIMPLY_CONNECTION_STRING";
+        public const string LocalConnectionString = "LOCAL_CONNECTION_STRING";
         //public const string ApiKeyName = "API_KEY";
         #endregion
     }

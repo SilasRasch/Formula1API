@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Formula1API/Formula1API.csproj", "Formula1API/"]
-RUN dotnet restore "./Formula1API/./Formula1API.csproj"
+RUN dotnet restore "./Formula1API/Formula1API.csproj"
 COPY . .
 WORKDIR "/src/Formula1API"
 RUN dotnet build "./Formula1API.csproj" -c $BUILD_CONFIGURATION -o /app/build

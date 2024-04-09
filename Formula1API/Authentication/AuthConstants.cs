@@ -7,8 +7,8 @@
         #endregion
 
         #region Local
-        public const string ApiKeyName = "Authentication:ApiKey";
-        public const string SimplyConnectionString = "Authentication:ConnectionString";
+        //public const string ApiKeyName = "Authentication:ApiKey";
+        //public const string SimplyConnectionString = "Authentication:ConnectionString";
         #endregion
 
         #region Azure
@@ -17,9 +17,9 @@
         #endregion
 
         #region Portainer (self-hosted)
-        //public const string SimplyConnectionString = "SIMPLY_CONNECTION_STRING";
+        public const string SimplyConnectionString = "SIMPLY_CONNECTION_STRING";
         public const string LocalConnectionString = "LOCAL_CONNECTION_STRING";
-        //public const string ApiKeyName = "API_KEY";
+        public const string ApiKeyName = "API_KEY";
         #endregion
     }
 }

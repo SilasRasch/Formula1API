@@ -21,8 +21,8 @@ namespace Formula1API.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Portainer / Azure
-            //var env = Environment.GetEnvironmentVariable(AuthConstants.SimplyConnectionString)!; // Simply
-            var env = Environment.GetEnvironmentVariable(AuthConstants.LocalConnectionString!); // Local
+            var env = Environment.GetEnvironmentVariable(AuthConstants.SimplyConnectionString)!; // Simply
+            //var env = Environment.GetEnvironmentVariable(AuthConstants.LocalConnectionString!); // Local
 
             // Local
             var appsetting = _config.GetValue<string>(AuthConstants.SimplyConnectionString)!;

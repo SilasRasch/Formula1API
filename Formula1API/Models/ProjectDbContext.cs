@@ -7,7 +7,6 @@ namespace Formula1API.Models
     {
         public DbSet<Team> Teams { get; set; }
         public DbSet<Driver> Drivers { get; set; }
-        private string _connectionString;
 
         #region Local host constructor
         private IConfiguration _config;
@@ -20,25 +19,10 @@ namespace Formula1API.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Portainer / Azure
-            var env = Environment.GetEnvironmentVariable(AuthConstants.SimplyConnectionString)!; // Simply
-            //var env = Environment.GetEnvironmentVariable(AuthConstants.LocalConnectionString!); // Local
-
-            // Local
-            var appsetting = _config.GetValue<string>(AuthConstants.SimplyConnectionString)!;
-
-            // Check if local or environment
-            if (env != null)
-            {
-                _connectionString = env;
-            }
-            else
-            {
-                _connectionString = appsetting;
-            }
+            var connectionString = AuthConstants.GetConnectionString(_config);
 
             var serverVersion = new MySqlServerVersion(new Version(8, 2));
-            optionsBuilder.UseMySql(_connectionString, serverVersion);
+            optionsBuilder.UseMySql(connectionString, serverVersion);
         }
     }
 }

@@ -2,7 +2,7 @@ name: Build and deploy .NET Core application to Web App Formula1API
 on:
   push:
     branches:
-    - master
+    - azure
 env:
   AZURE_WEBAPP_NAME: Formula1API
   AZURE_WEBAPP_PACKAGE_PATH: Formula1API\publish

@@ -14,14 +14,14 @@
         #endregion
 
         #region Azure
-        public const string SimplyConnectionString = "MYSQLCONNSTR_SIMPLY";
-        public const string ApiKeyName = "APPSETTING_APIKEY";
+        //public const string SimplyConnectionString = "MYSQLCONNSTR_SIMPLY";
+        //public const string ApiKeyName = "APPSETTING_APIKEY";
         #endregion
 
         #region Portainer (self-hosted)
-        //public const string SimplyConnectionString = "SIMPLY_CONNECTION_STRING";
-        //public const string LocalConnectionString = "LOCAL_CONNECTION_STRING";
-        //public const string ApiKeyName = "API_KEY";
+        public const string SimplyConnectionString = "SIMPLY_CONNECTION_STRING";
+        public const string LocalConnectionString = "LOCAL_CONNECTION_STRING";
+        public const string ApiKeyName = "API_KEY";
         #endregion
 
         public static string GetApiKey(IConfiguration config)

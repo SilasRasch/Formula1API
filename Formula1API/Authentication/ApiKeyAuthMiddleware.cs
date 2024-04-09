@@ -4,7 +4,6 @@
     {
         private readonly RequestDelegate _next;
         private readonly IConfiguration _configuration;
-        private string _apiKey;
 
         public ApiKeyAuthMiddleware(RequestDelegate next, IConfiguration configuration)
         {
@@ -21,29 +20,16 @@
                 return;
             }
 
-            // Portainer / Azure
-            var env = Environment.GetEnvironmentVariable(AuthConstants.ApiKeyName)!;
+            var apiKey = AuthConstants.GetApiKey(_configuration);
 
-            // Local
-            var appsetting = _configuration.GetValue<string>(AuthConstants.ApiKeyName)!;
-
-            // Check if local or environment
-            if (env != null)
-            {
-                _apiKey = env;
-            }
-            else if (appsetting != null)
-            {
-                _apiKey = appsetting;
-            }
-            else
+            if (apiKey == null)
             {
                 context.Response.StatusCode = 500;
                 await context.Response.WriteAsync("Api key variable not found");
                 return;
             }
 
-            if (!_apiKey.Equals(extractedApiKey))
+            if (!apiKey.Equals(extractedApiKey))
             {
                 context.Response.StatusCode = 401;
                 await context.Response.WriteAsync("Invalid API Key");

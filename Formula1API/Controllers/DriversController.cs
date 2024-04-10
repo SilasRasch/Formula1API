@@ -25,14 +25,7 @@ namespace Formula1API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Driver>>> GetDrivers()
         {
-            try 
-            { 
-                return await _context.Drivers.Include(d => d.Team).ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized(ex.Message);
-            }
+            return Ok(await _context.Drivers.Include(d => d.Team).ToListAsync());
         }
 
         // GET: api/Drivers/5
@@ -46,14 +39,14 @@ namespace Formula1API.Controllers
                 return NotFound();
             }
 
-            return driver;
+            return Ok(driver);
         }
         
         // GET: api/Drivers/
         [HttpGet("ByTeam/{teamId}")]
         public async Task<ActionResult<IEnumerable<Driver>>> GetDriversByTeamId(int teamId)
         {
-            return await _context.Drivers.Include(d => d.Team).Where(d => d.TeamId == teamId).ToListAsync();
+            return Ok(await _context.Drivers.Include(d => d.Team).Where(d => d.TeamId == teamId).ToListAsync());
         }
 
         // PUT: api/Drivers/5

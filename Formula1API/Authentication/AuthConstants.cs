@@ -43,7 +43,7 @@
             }
         }
 
-        public static string GetConnectionString(IConfiguration config)
+        public static string GetConnectionString(bool useLocal, IConfiguration config)
         {
             // Portainer / Azure
             var env = Environment.GetEnvironmentVariable(AuthConstants.SimplyConnectionString)!; // Simply
@@ -53,13 +53,20 @@
             var appsetting = config.GetValue<string>(AuthConstants.SimplyConnectionString)!;
 
             // Check if local or environment
-            if (env != null)
+            if (!useLocal)
             {
-                return env;
+                if (env != null)
+                {
+                    return env;
+                }
+                else
+                {
+                    return appsetting;
+                }
             }
             else
             {
-                return appsetting;
+                return Environment.GetEnvironmentVariable(AuthConstants.LocalConnectionString)!;
             }
         }
     }

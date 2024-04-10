@@ -21,7 +21,7 @@ namespace Formula1API.Models
         {
             var connectionString = AuthConstants.GetConnectionString(_config);
 
-            var serverVersion = new MySqlServerVersion(new Version(8, 2));
+            var serverVersion = ServerVersion.AutoDetect(connectionString);
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
     }

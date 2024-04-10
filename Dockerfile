@@ -18,6 +18,8 @@ RUN dotnet build "./Formula1API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./Formula1API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN  apt-get -y update && \
+     apt-get install -y curl
 
 FROM base AS final
 WORKDIR /app

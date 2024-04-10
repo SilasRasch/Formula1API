@@ -25,7 +25,14 @@ namespace Formula1API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Driver>>> GetDrivers()
         {
-            return await _context.Drivers.Include(d => d.Team).ToListAsync();
+            try 
+            { 
+                return await _context.Drivers.Include(d => d.Team).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
 
         // GET: api/Drivers/5

@@ -19,14 +19,14 @@ namespace Formula1API.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var connectionString = AuthConstants.GetConnectionString(_config);
+            var connectionString = AuthConstants.GetConnectionString(false, _config);
 
-            //var serverVersion = ServerVersion.AutoDetect(connectionString);
-            //optionsBuilder.UseMySql(connectionString, serverVersion);
+            var serverVersion = ServerVersion.AutoDetect(connectionString);
+            optionsBuilder.UseMySql(connectionString, serverVersion);
 
             // Local / Portainer DB
-            var connectionString = AuthConstants.GetConnectionString(true, _config);
-            optionsBuilder.UseSqlServer(connectionString);
+            //var connectionString = AuthConstants.GetConnectionString(true, _config);
+            //optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
